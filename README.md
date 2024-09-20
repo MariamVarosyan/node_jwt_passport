@@ -1,1 +1,1 @@
-# node_jwt_passport
+# nodePassportJWT
