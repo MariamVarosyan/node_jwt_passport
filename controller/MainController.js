@@ -55,9 +55,7 @@ class MainController{
             }
         } catch (err) { }
     }
-    static async profile(req, res){
-        res.send({ user: req.user })
-    }
+   
 }
 
 module.exports ={MainController}

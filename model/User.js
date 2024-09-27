@@ -5,6 +5,10 @@ module.exports = (sequelize, Sequelize) => {
         email: Sequelize.STRING,
         password: Sequelize.STRING,
         emailToken:Sequelize.STRING,
+        image:{
+            type: Sequelize.STRING,
+            defaultValue: 'user-icon.png'
+        },
         isVerified: {
             type: Sequelize.INTEGER,
             defaultValue: 0
@@ -15,3 +19,7 @@ module.exports = (sequelize, Sequelize) => {
     return User;
 }
 
+/**
+ * 
+ * role-ADMIN=2.MANAGER=1,USER=0
+ */
