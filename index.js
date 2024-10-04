@@ -33,8 +33,8 @@ app.use(passport.session())
 require('./middleware/passport')(passport);
 
 app.use('/', router);
-app.use('/admin', passport.authenticate('jwt', { session: false }),isAdmin, admin);
 app.use('/user', passport.authenticate('jwt', { session: false }), user);
 app.use('/manager', passport.authenticate('jwt', { session: false }), isManager,manager);
+app.use('/admin', passport.authenticate('jwt', { session: false }),isAdmin, admin);
 
 app.listen(port, () => console.log(`listening  http://localhost:${port}`))

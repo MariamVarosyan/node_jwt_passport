@@ -65,13 +65,20 @@ class AdminContoller {
         }
     }
     static async updateCategoryImage(req, res) {
-        if (!req.file) {
-            res.send({ message: " file not found" })
+        const cat = await Category.findByPk(req.params.id)
+        if (cat) {
+            if (!req.file) {
+                res.send({ message: " file not found" })
+            } else {
+                fs.unlinkSync(`public/${cat.image}`)
+                await Category.update({ image: req.file.filename }, {
+                    where: { id: req.params.id }
+                })
+                res.send(await Category.findByPk(req.params.id))
+            }
         } else {
-            await Category.update({ image: req.file.filename }, {
-                where: { id: req.params.id }
-            })
-            res.send(await Category.findByPk(req.params.id))
+            res.send({ message: " cat not found" })
+
         }
     }
 

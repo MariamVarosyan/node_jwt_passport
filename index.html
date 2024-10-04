@@ -15,9 +15,23 @@
     <tbody class="table-success">
         <tr>
             <td>GET</td>
+            <td>http://localhost:8080/verfy</td>
+            <td>
+    <pre>
+     query
+     {
+         "email":"...",
+         "emailToken":"...",
+     }
+    </pre>
+            </td>
+            <td> {message}</td>
+        </tr>
+        <tr>
+            <td>GET</td>
             <td>http://localhost:8080/user/profile</td>
             <td>token</td>
-            <td>user {}</td>
+            <td>user {}/ {message}</td>
         </tr>
         <tr>
             <td>GET</td>
@@ -29,8 +43,21 @@
             <td>GET</td>
             <td>http://localhost:8080/categories/:id</td>
             <td>params id</td>
-            <td>categories {}</td>
+            <td>categories {}/ {message}</td>
         </tr>
+        <tr>
+            <td>GET</td>
+            <td>http://localhost:8080/products</td>
+            <td></td>
+            <td>products []</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>http://localhost:8080/product/:id</td>
+            <td>params id</td>
+            <td>products {} / {message}</td>
+        </tr>
+
 
     </tbody>
     <tbody class="table-info">
@@ -65,6 +92,19 @@
         </tr>
         <tr>
             <td>POST</td>
+            <td>http://localhost:8080/forgotPassword</td>
+            <td>
+                <pre>
+    {
+        "email": "..."
+    }
+                </pre>
+            </td>
+            <td>{message}</td>
+        </tr>
+
+        <tr>
+            <td>POST</td>
             <td>http://localhost:8080/admin/categories/add</td>
             <td>
                 <pre>
@@ -74,6 +114,37 @@
                 </pre>
             </td>
             <td>category { }</td>
+        </tr>
+
+        <tr>
+            <td>POST</td>
+            <td>http://localhost:8080/manager/products/add</td>
+            <td>
+                <pre>
+    form-data, token
+    "name": "prod1",
+    "description": "description",
+    "price": 400,
+    "count": 1,
+    "categoryId":3
+    "img": files
+                </pre>
+            </td>
+            <td>product { }/ {message}</td>
+        </tr>
+        <tr>
+
+            <td>POST</td>
+            <td>http://localhost:8080/user/wishlist/add</td>
+            <td>
+                <pre>
+    token
+    {
+        "productId":3
+    }
+                </pre>
+            </td>
+            <td>wishList { }/ {message}</td>
         </tr>
     </tbody>
     <tbody class="table-warning">
@@ -86,7 +157,7 @@
     "img": file
                 </pre>
             </td>
-            <td>category { }</td>
+            <td>category { }/{message}</td>
         </tr>
         <tr>
             <td>PATCH</td>
@@ -99,13 +170,60 @@
     }
                 </pre>
             </td>
-            <td>category { }</td>
+            <td>category { }/{message}</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>PATCH</td>
+            <td>http://localhost:8080/manager/products/:id</td>
+            <td>
+                <pre>
+    token
+    {
+        "name": "prod1",
+        "description": "description",
+        "price": 400,
+        "count": 1,
+        "categoryId":3
+    }
+       
+            </pre>
+            </td>
+            <td>product { }/{message}</td>
+        </tr>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>http://localhost:8080/admin/product/img/:id</td>
+            <td>
+                <pre>
+    form-data, token
+    "img": file
+                </pre>
+            </td>
+            <td>product { }/{message}</td>
         </tr>
     </tbody>
     <tbody class="table-danger">
         <tr>
             <td>DELETE</td>
             <td>http://localhost:8080/admin/categories/:id</td>
+            <td>
+                params id, token
+            </td>
+            <td>true or false</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>http://localhost:8080/manager/products/:id</td>
+            <td>
+                params id, token
+            </td>
+            <td>true or false</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>http://localhost:8080/manager/products/img/:id</td>
             <td>
                 params id, token
             </td>

@@ -4,13 +4,21 @@ const { User } = require("../model/index")
 const passport = require('passport');
 const { MainController } = require("../controller/MainController");
 const AdminContoller = require("../controller/AdminController");
+const ManagerContoller = require("../controller/ManagerController");
 const Local = require("passport-local").Strategy
 
 router.get("/categories", AdminContoller.getCategories)
 router.get("/categories/:id", AdminContoller.getCategoryById)
 
-router.post('/register', MainController.register)
 
+router.get("/products", ManagerContoller.getProducts)
+router.get("/products/:id", ManagerContoller.getProductById)
+
+
+router.post('/register', MainController.register)
+router.get('/verify', MainController.verify)
+router.post('/forgotPassword', MainController.forgotPassword)
+router.post('/resetPassword/:email', MainController.resetPassword)
 router.post('/login', passport.authenticate('local'), MainController.login);
 
 
